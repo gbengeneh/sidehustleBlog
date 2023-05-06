@@ -78,10 +78,56 @@ if(isset($_POST['login_user'])){
     $_SESSION["id"] = $user_details['id'];
 
     
-    header("Location: account.php");
+    header("Location: ../ikedi/blog.php");
 
     
 }
+
+//....................................................................................
+if(isset($_POST['publish'])){
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $image=$_POST['image'];
+
+    //get file info
+    $image=basename($_FILES["image"]["name"]);
+    $fileType=pathinfo($fileName, PATHINFO_EXTENTION);
+
+    //Allow certain formats
+    $allowTypes=array('jpg','png','jpeg','gif');
+    if(in_array($fileType, $allowTypes)){
+        $image=$_FILES['image']['tmp_name'];
+        $imgContent=addslashes(file_get_contents($image));
+    }
+
+
+    // inserting data into database.
+    $insert_user= mysqli_query($connect, "INSERT INTO posts( title, content,image) VALUES( '$title', '$content','$imgContent')");
+if($insert_user){
+    header("location: ../ikedi/all-posts.php");
+}
+
+}
+
+
+// Update post
+if(isset($_POST['edit_post'])){
+    $id =$_POST['post_id'];
+    $title =$_POST['post_title'];
+    $content =$_POST['post_content'];
+    $content =$_POST['post_image'];
+
+    
+
+    
+    $update_post = mysqli_query($connect, "UPDATE posts SET title = '$title', content = '$content' WHERE ID = '$id' ");
+
+if($update_post){
+header("Location: all-posts.php");
+
+}
+}
+
 
 
 ?>

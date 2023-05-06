@@ -1,4 +1,4 @@
-<!-- 
+
         <div id="post1">
           <img class="img" src="Images/1.jpg" alt="image1" />
           <h2>UX Review presentations</h2>
@@ -83,6 +83,29 @@
                 looking to learn a skill online
             </p>
             <h4>Read Post <span class="arrow-top"></span></h4>
-          </div>-->
+          </div>
 
-  <!--
+
+              <?php
+        foreach ($posts as $post): ?>
+    
+        <!-- <td><?= $post['ID'] ?></td> -->
+        <div id="container" >
+        <div id="container-item1" ><img src="images/9.png"><br>
+            <?= $post['content'] ?> <br> <?= $post['title'] ?> </div>
+         <div id="container-item2"> <?= $post['content'] ?> <div class="read">
+            <a  href="blog.php?ID=<?= $post['id'] ?>">Read Post</a>
+          </div> </div>
+        </div>
+
+
+        <!-- <td>
+ 
+
+        </td> -->
+
+    
+    <?php 
+    endforeach;
+     ?> -->
+    

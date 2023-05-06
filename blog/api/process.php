@@ -89,20 +89,20 @@ if(isset($_POST['publish'])){
     $content = $_POST['content'];
     $image=$_POST['image'];
 
-    //get file info
-    $image=basename($_FILES["image"]["name"]);
-    $fileType=pathinfo($fileName, PATHINFO_EXTENTION);
+    // //get file info
+    // $image=basename($_FILES["image"]["name"]);
+    // $fileType=pathinfo($fileName, PATHINFO_EXTENTION);
 
-    //Allow certain formats
-    $allowTypes=array('jpg','png','jpeg','gif');
-    if(in_array($fileType, $allowTypes)){
-        $image=$_FILES['image']['tmp_name'];
-        $imgContent=addslashes(file_get_contents($image));
-    }
+    // //Allow certain formats
+    // $allowTypes=array('jpg','png','jpeg','gif');
+    // if(in_array($fileType, $allowTypes)){
+    //     $image=$_FILES['image']['tmp_name'];
+    //     $imgContent=addslashes(file_get_contents($image));
+    // }
 
 
     // inserting data into database.
-    $insert_user= mysqli_query($connect, "INSERT INTO posts( title, content,image) VALUES( '$title', '$content','$imgContent')");
+    $insert_user= mysqli_query($connect, "INSERT INTO posts( title, content) VALUES( '$title', '$content')");
 if($insert_user){
     header("location: ../ikedi/all-posts.php");
 }
@@ -115,7 +115,7 @@ if(isset($_POST['edit_post'])){
     $id =$_POST['post_id'];
     $title =$_POST['post_title'];
     $content =$_POST['post_content'];
-    $content =$_POST['post_image'];
+    
 
     
 

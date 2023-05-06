@@ -48,8 +48,8 @@
         <!-- <h1>We Create a<br> modern beautiful<br> photo</h1> -->
 <?php
 include '../api/db.php';
-
-$id= $_POST['id'];
+?>
+<?php
 $id = $_GET['id'];
 $post = mysqli_query($connect, "SELECT * FROM posts WHERE ID = '$id'");
 
